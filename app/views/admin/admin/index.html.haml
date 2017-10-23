@@ -1,0 +1,38 @@
+- content_for :title, "Admin Dashboard"
+
+.content
+  .row
+    .large-12.columns
+      %h1
+        Admin Dashboard
+
+  .row
+
+    .large-6.columns
+
+      #wordcloud
+
+    .large-6.columns
+
+      .panel
+        %ul
+          %li
+            = link_to "Featured Projects", admin_featured_projects_path
+          %li
+            = link_to "User Admin", admin_users_path
+          %li
+            = link_to "Abuse Reports", admin_abuse_reports_path
+
+:javascript
+  var word_array = [
+    {text: "#{@projects_count} Projects", weight: #{@projects_count}},
+    {text: "#{@users_count} Users", weight: #{@users_count}},
+    {text: "#{@pair_partners_count} Pair Partners", weight: #{@pair_partners_count}},
+    {text: "#{@mentors_count} Mentors", weight: #{@mentors_count}},
+    {text: "#{@messages_count} Messages", weight: #{@messages_count}},
+    {text: "#{@conversations_count} Conversations", weight: #{@conversations_count}}
+  ];
+
+  $(function() {
+    $("#wordcloud").jQCloud(word_array);
+  })
